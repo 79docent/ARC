@@ -1,0 +1,25 @@
+{
+  "name": "arc1_s20698_s20574",
+  "version": "1.0.0",
+  "description": "Projekt zaliczeniowy na przedmiot \"Architektura rozwiazan chmurowych 1\" autorstwa Jakuba Ziolkowskiego i Szymona Jakobiaka ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "s20698 & s20574",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/storage": "^5.18.0",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.6",
+    "csurf": "^1.11.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "firebase": "^9.6.3",
+    "firebase-admin": "^10.0.2",
+    "fs": "0.0.1-security",
+    "gtts": "^0.2.1",
+    "nodemon": "^2.0.15",
+    "tone": "^14.7.77"
+  }
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Firebase Server Auth</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js" defer ></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js" defer ></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js" defer ></script>
+  </head>
+  <body>
+    <main>
+      <section>
+        <form id="login">
+          <label>Login</label>
+          <input type="text" name="login" />
+          <label>Password</label>
+          <input type="password" name="password" />
+          <button>Log in</button>
+        </form>
+      </section>
+
+      <script>
+        window.addEventListener("DOMContentLoaded", () => {
+          const firebaseConfig = {
+            apiKey: "AIzaSyAuIQlwOlXD1-fLeXSFrnopctzo4rhjL1I",
+            authDomain: "arc1-ba128.firebaseapp.com",
+            databaseURL: "https://arc1-ba128-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "arc1-ba128",
+            storageBucket: "arc1-ba128.appspot.com",
+            messagingSenderId: "662160588737",
+            appId: "1:662160588737:web:4b7aa168d3852d30727940"
+          };
+
+          firebase.initializeApp(firebaseConfig);
+
+          firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
+
+          document
+            .getElementById("login")
+            .addEventListener("submit", (event) => {
+              event.preventDefault();
+              const login = event.target.login.value;
+              const password = event.target.password.value;
+
+              firebase
+                .auth()
+                .signInWithEmailAndPassword(login, password)
+                .then(({ user }) => {
+                  return user.getIdToken().then((idToken) => {
+                    return fetch("/sessionLogin", {
+                      method: "POST",
+                      headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({ idToken }),
+                    });
+                  });
+                })
+                .then(() => {
+                  return firebase.auth().signOut();
+                })
+                .then(() => {
+                  window.location.assign("/profile");
+                })
+                .catch((error) => {
+                  window.location.assign("/wrongdata");
+                });
+              return false;
+            });
+        });
+      </script>
+    </main>
+  </body>
+</html>

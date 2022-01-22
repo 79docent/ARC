@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile page</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="shortcut icon" href="#" />
+</head>
+<body>
+  <main> 
+     
+     <a href="/sessionLogout">Wyloguj</a>
+     <br>
+
+     <div>
+      <input id="uploadTxtToAppButton" class="file-upload__field" type="file">
+      <textarea id="myTextField" class="textarea" cols="30" rows="20"></textarea>
+      <script src="./tone.js"></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/tone/13.3.1/Tone.min.js'></script>
+     </div>
+
+     <audio controls></audio>
+
+     <div> 
+      <button id="play_button">Play</button> 
+      <button id="stop_button">Stop</button>
+     </div>
+
+
+     <button onclick="move()" class="convertbutton" id="uploadTxtToStorageButton" type="button">Uploaduj nuty</button>
+     <script type="module" src="/upload.js"></script> 
+
+  </main>
+
+  
+</body>
+</html>
