@@ -96,6 +96,18 @@
                     <input id="uploadTxtToAppButton" class="u-black u-border-none u-btn u-btn-round u-button-style u-hover-palette-5-base u-radius-50 u-btn-1" type="file" accept=".txt">
                     <br>
                     <textarea id="myTextField" class="textarea" cols="30" rows="20"></textarea>
+                    <blockquote class="u-align-center u-border-black u-text u-text-4">Aby można było odtworzyć melodię plik musi zawierać dźwięki z oktawy! Przykładowa melodia:
+                      "Wlazł kotek na płotek":
+                      GEEFDD
+                      CEG
+                      GEEFDD
+                      CEC
+                      GEEFDD
+                      CEG
+                      GEEFDD
+                      CEC
+                    <br>
+                    </blockquote>
                     <script src="./tone.js"></script>
                     <script src='https://cdnjs.cloudflare.com/ajax/libs/tone/13.3.1/Tone.min.js'></script>
                    </div>
@@ -120,14 +132,22 @@
             </div>
           </div>
         </div>
-        <button onclick="move()" class="u-black u-border-none u-btn u-btn-round u-button-style u-hover-palette-5-base u-radius-50 u-btn-3" id="uploadTxtToStorageButton" type="button">PRZEŚLIJ</button>
-        <script type="module" src="upload.js"></script> 
-        <script src="progressbar.js"></script>
-        <div class="myprogress">
-          <div id="mybar">
-            <span id="incvalue">1%</span>
+        
+
+        <button data-modal-target="#modal" class="u-black u-border-none u-btn u-btn-round u-button-style u-hover-palette-5-base u-radius-50 u-btn-3" id="uploadTxtToStorageButton" type="button">PRZEŚLIJ</button>
+        <div class="modal" id="modal">
+          <div class="modal-header">
+            <div class="title">Powodzenie!</div>
+            <button data-close-button class="close-button">&times;</button>
           </div>
-      </div>
+          <div class="modal-body">
+            Pomyślnie zuploadowano Twój plik do bazy danych!
+          </div>
+        </div>
+        <div id="overlay"></div>
+
+        <script type="module" src="upload.js"></script> 
+        <script type="module" src="notifications.js" defer=""></script>
       <br>
       </div>
     </section>

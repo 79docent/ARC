@@ -53,7 +53,7 @@ app.get("/profile", function (req, res) {
 });
 
 app.get("/", function (req, res) {
-  res.render("index.html");
+  res.render("signup.html");
 });
 
 app.post("/sessionLogin", (req, res) => {
