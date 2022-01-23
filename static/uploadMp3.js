@@ -19,10 +19,9 @@ const firebaseConfig = {
   var files = [];
   var reader = new FileReader();
 
-  var uploadTxtToAppButton = document.getElementById("uploadTxtToAppButton"); // input
-  var uploadTxtToStorageButton = document.getElementById("uploadTxtToStorageButton"); // button
-  var getTxtFromStorageButton = document.getElementById("getTxtfromStorageButton");
-  var myTextField = document.getElementById("myTextField");
+  var uploadMP3ToAppButton = document.getElementById("uploadMp3Input"); // input
+  var uploadMP3ToStorageButton = document.getElementById("uploadMp3Button"); // button
+//   var myTextField = document.getElementById("myTextField");
 
   uploadTxtToAppButton.onchange = e =>{
       files = e.target.files;
@@ -33,9 +32,9 @@ const firebaseConfig = {
       reader.readAsDataURL(files[0]);
   }
 
-  reader.onload = function(){
-      myTextField.src = reader.result;
-  }
+//    reader.onload = function(){
+//        myTextField.src = reader.result;
+//    }
 
 function getFileExt(file){
     var temp = file.name.split('.');
@@ -50,18 +49,18 @@ function getFileName(file){
 }
 
 async function UploadProcess(){
-    var txtFileToUpload = files[0];
-    var txtFileName = uploadTxtToAppButton.value;
+    var mp3FileToUpload = files[0];
+    var mp3FileName = uploadMP3ToAppButton.value;
 
-    const metaData = {
-        contentType: txtFileToUpload.type
-    }
+    // const metaData = {
+    //     contentType: mp3FileToUpload.type
+    // }
 
     const storage = getStorage();
 
-    const storageRef = sRef(storage, "txtFiles/"+txtFileName);
+    const storageRef = sRef(storage, "mp3Files/"+mp3FileName);
 
-    const uploadTask = uploadBytesResumable(storageRef,txtFileToUpload,metaData);
+    const uploadTask = uploadBytesResumable(storageRef,mp3FileToUpload);
 
     uploadTask.on("state-changed",(snapshot)=>{
         var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
@@ -78,11 +77,11 @@ async function UploadProcess(){
 //-----------------FUNKCJE BAZY-------------------//
 
 function SaveURLtoRealtimeDB(URL){
-    var txtFileName = uploadTxtToAppButton.value;
+    var mp3FileName = uploadMP3ToAppButton.value;
 
-    set(ref(realdb, "TxtLinks/"+txtFileName),{
-        TxtName: (txtFileName),
-        TxtURL: URL
+    set(ref(realdb, "Mp3Links/"+mp3FileName),{
+        Mp3Name: (mp3FileName),
+        Mp3URL: URL
     })
 }
 
@@ -97,5 +96,5 @@ function SaveURLtoRealtimeDB(URL){
 //     })
 // }
 
-uploadTxtToStorageButton.onclick = UploadProcess;
+uploadMP3ToStorageButton.onclick = UploadProcess;
 // getTxtFromStorageButton.onclick = GetURLFromRealtimeDB;

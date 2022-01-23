@@ -4,6 +4,7 @@ const express = require("express");
 const admin = require("firebase-admin");
 const fs = require("fs");
 const path = require('path');
+const csrf = require("csurf");
 
 const serviceAccount = require("./serviceAccountKey.json");
 
@@ -15,6 +16,7 @@ admin.initializeApp({
 
 const PORT = process.env.PORT || 3000;
 const app = express();
+const csrfMiddleware = csrf({ cookie: true });
 
 app.engine("html", require("ejs").renderFile);
 app.use(express.static("static"));
@@ -22,12 +24,16 @@ app.use(express.static("static"));
 
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(csrfMiddleware);
 
 app.use(bodyParser.urlencoded({ // dodane przy dodawaniu tts
 	extended: false
 }));
 
-
+app.all("*", (req, res, next) => {
+  res.cookie("XSRF-TOKEN", req.csrfToken());
+  next();
+});
 
 app.get("/login", function (req, res) {
   res.render("login.html");

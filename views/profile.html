@@ -124,17 +124,22 @@
                   </blockquote>
                   <button id="stop_button" class="u-black u-border-none u-btn u-btn-round u-button-style u-hover-palette-5-base u-radius-50 u-btn-2">ZATRZYMAJ AUDIO</button> 
                   
-                  <h3 class="u-align-center u-text u-text-5">Prześlij plik do bazy danych<br>
+                  <h3 class="u-align-center u-text u-text-5">Prześlij zapis nutowy do bazy danych<br>
                     <span style="font-size: 0.875rem;">(plik zostanie wysłany i zapisany w bazie danych użytkownika)</span>
                   </h3>
                 </div>
               </div>
             </div>
           </div>
+
+          <button data-modal-target="#modal" class="u-black u-border-none u-btn u-btn-round u-button-style u-hover-palette-5-base u-radius-50 u-btn-3" id="uploadTxtToStorageButton" type="button">PRZEŚLIJ NUTY</button>
+          <h3 class="u-align-center u-text u-text-5">Prześlij plik audio do bazy danych<br>
+            <span style="font-size: 0.875rem;">(plik zostanie wysłany i zapisany w bazie danych użytkownika)</span>
+          </h3>
+          <input id="uploadMp3Input" class="u-black u-border-none u-btn u-btn-round u-button-style u-hover-palette-5-base u-radius-50 u-btn-3" type="file" accept=".mp3">
+          <button data-modal-target="#modal" class="u-black u-border-none u-btn u-btn-round u-button-style u-hover-palette-5-base u-radius-50 u-btn-3" id="uploadMp3Button" type="button">PRZEŚLIJ AUDIO</button>
         </div>
         
-
-        <button data-modal-target="#modal" class="u-black u-border-none u-btn u-btn-round u-button-style u-hover-palette-5-base u-radius-50 u-btn-3" id="uploadTxtToStorageButton" type="button">PRZEŚLIJ</button>
         <div class="modal" id="modal">
           <div class="modal-header">
             <div class="title">Powodzenie!</div>
@@ -147,6 +152,7 @@
         <div id="overlay"></div>
 
         <script type="module" src="upload.js"></script> 
+        <script type="module" src="uploadMp3.js"></script> 
         <script type="module" src="notifications.js" defer=""></script>
       <br>
       </div>
