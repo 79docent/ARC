@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html style="font-size: 16px;">
   <head>
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="keywords" content="ARCapp">
@@ -59,6 +63,7 @@
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-form u-login-control u-form-1">
           <form id="signup" class="u-clearfix u-form-custom-backend u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
+
             <div class="u-form-group u-form-name">
               <label for="username-a30d" class="u-label">Email</label>
               <input type="text" placeholder="Wprowadź email" id="username-a30d" name="login" class="u-grey-5 u-input u-input-rectangle u-input-1" required="">
@@ -67,17 +72,24 @@
               <label for="password-a30d" class="u-label">Hasło</label>
               <input type="password" placeholder="Wprowadź hasło" id="password-a30d" name="password" class="u-grey-5 u-input u-input-rectangle u-input-2" required="">
             </div>
-            <div class="u-form-checkbox u-form-group">
-              <input type="checkbox" id="checkbox-a30d" name="remember" value="On">
-              <label for="checkbox-a30d" class="u-label">Zapamiętaj mnie</label>
+            <br>
+            &nbsp;&nbsp;<div class="g-recaptcha" data-sitekey="6LdMYTEeAAAAAPLSM8G2ofGH8qJ6ABTZAnx06nua"
+            data-callback="recaptcha_callback">
             </div>
+
             <div class="u-form-group u-form-submit">
-              <a href="#" class="u-border-2 u-border-black u-btn u-btn-submit u-button-style u-hover-black u-none u-text-black u-text-hover-white u-btn-1">ZAREJESTRUJ<br>
+              <a href="#"  class="u-border-2 u-border-black u-btn u-btn-submit u-button-style u-hover-black u-none u-text-black u-text-hover-white u-btn-1">ZAREJESTRUJ<br>
               </a>
-              <input type="submit" value="submit" class="u-form-control-hidden">
+              <div class="nocursor">
+              <input id="submit" disabled type="submit" value="submit" class="u-form-control-hidden" >
+              </div>
             </div>
             <input type="hidden" value="" name="recaptchaResponse">
+
+            
           </form>
+
+          
         </div>
         <a href="login" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-login-control u-login-create-account u-none u-text-body-color u-btn-2">Masz już konto?</a>
       </div>
@@ -132,6 +144,13 @@
               });
             return false;
           });
+
+          function recaptcha_callback(){
+            var submitBtn = document.querySelector('#submit');
+            submitBtn.removeAttribute('disabled');
+            submitBtn.style.cursor = 'pointer';
+          }
+
       </script>
     
     
