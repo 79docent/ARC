@@ -53,15 +53,15 @@ async function UploadProcess(){
     var txtFileToUpload = files[0];
     var txtFileName = uploadTxtToAppButton.value;
 
-    const metaData = {
-        contentType: txtFileToUpload.type
-    }
+    // const metaData = {
+    //     contentType: txtFileToUpload.type
+    // }
 
     const storage = getStorage();
 
     const storageRef = sRef(storage, "txtFiles/"+txtFileName);
 
-    const uploadTask = uploadBytesResumable(storageRef,txtFileToUpload,metaData);
+    const uploadTask = uploadBytesResumable(storageRef,txtFileToUpload);
 
     uploadTask.on("state-changed",(snapshot)=>{
         var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
